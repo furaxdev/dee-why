@@ -1,0 +1,33 @@
+@import "text.scss";
+
+@font-face {
+  font-family: "Kelson";
+  src: url("Kelson.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Kelson";
+  src: url("Kelson-Medium.woff");
+  font-weight: medium;
+  font-style: medium;
+}
+@font-face {
+  font-family: "Kelson";
+  src: url("Kelson-Bold.woff");
+  font-weight: bold;
+  font-style: bold;
+}
+
+.kelson {
+  font-family: Kelson, system-ui, Helvetica, sans-serif;
+  font-weight: normal;
+}
+.kelson-med {
+  font-family: Kelson, system-ui, Helvetica, sans-serif;
+  font-weight: medium;
+}
+.kelson-bold {
+  font-family: Kelson, system-ui, Helvetica, sans-serif;
+  font-weight: bold;
+}
