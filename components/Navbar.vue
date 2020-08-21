@@ -17,6 +17,9 @@
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
         <div class="div flex">
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
           <a href="/" target="_blank" color="#000" class="social-links">
             <v-icon medium="true">mdi-facebook</v-icon>
           </a>
@@ -121,7 +124,7 @@
                 class="btn-close"
                 height="20px"
                 @click="togglenav"
-                fill="#fff"
+                fill="#ede4d3"
               >
                 <path
                   d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
@@ -220,7 +223,7 @@ export default {
   left: 100vw;
   width: 100vw;
   height: 100vh;
-  background: rgba($color: #fff, $alpha: 0.6);
+  background: rgba($color: #ede4d3, $alpha: 0.6);
 
   &.open {
     left: 0;
@@ -252,16 +255,16 @@ export default {
   cursor: pointer;
   transition: all ease-in-out 0.5s;
   &:hover {
-    fill: #fff;
+    fill: #ede4d3;
   }
 }
 .v-icon {
   //   background-color: #323c34;
-  color: rgba($color: #000000, $alpha: 0.8);
+  color: rgba($color: #323c34, $alpha: 1);
   transition: all ease-in-out 0 0.5s;
   &:hover,
   &.m-social-links:hover {
-    color: #fff !important;
+    color: #ede4d3 !important;
   }
   &.m-social-links {
     color: #eca419 !important ;
@@ -273,7 +276,7 @@ export default {
   transition: all 0.5s ease-in-out;
 
   &:hover {
-    color: #fff !important;
+    color: #ede4d3 !important;
   }
 }
 nav {
@@ -283,7 +286,7 @@ nav {
 }
 .nav-link {
   position: relative;
-  color: white;
+  color: #ede4d3;
   font-size: 1.2rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -312,7 +315,7 @@ nav {
   }
 }
 .m-nav-link-item {
-  color: #fff;
+  color: #ede4d3;
   margin-bottom: 1.5rem;
   padding: 12px;
   min-height: 40px;
@@ -337,7 +340,7 @@ nav {
 }
 
 .d-nav-link-item {
-  color: #fff;
+  color: #ede4d3;
   margin-bottom: 1rem;
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
