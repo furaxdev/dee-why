@@ -4,7 +4,7 @@
       <nav class="flex text-pri center align-center text-center">
         <a href="/" target="_blank" color="#000" class="social-links">
           <v-icon medium>mdi-cellphone-android</v-icon>
-          <span class="text-pri">+977 999999999999</span>
+          <span class="text-pri">+64 999999999999</span>
         </a>
 
         <v-spacer></v-spacer>
@@ -41,7 +41,7 @@
     <v-app-bar height="80px" color="#323c34" class="px-0">
       <nav class="flex center align-center">
         <v-toolbar-title>
-          <nuxt-link to="/" class="kelson-bold text-white text-2xl">App</nuxt-link>
+          <nuxt-link to="/" class="kelson-bold text-white text-3xl uppercase">Dee Why</nuxt-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <div class="navigation kelson flex hidden d-md-flex">
@@ -49,27 +49,32 @@
           <v-spacer></v-spacer>
           <nuxt-link to="/about" class="nav-link">About</nuxt-link>
           <v-spacer></v-spacer>
-          <nuxt-link
-            to="/services"
-            v-on:mouseover.native="hover = true"
-            v-on:mouseleave.native="hover = false"
-            class="nav-link relative"
-          >
-            Services
-            <div v-show="hover" class="absolute bg-red-500 services list">
-              <v-list color="#323c34" elevation="24">
-                <v-list-item>
-                  <v-list-item-title>Option 1</v-list-item-title>
-                </v-list-item>
-                <v-list-item disabled>
-                  <v-list-item-title>Option 2</v-list-item-title>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-title>Option 3</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </div>
-          </nuxt-link>
+          <v-menu :open-on-hover="true" :offset-y="true" :close-on-click="true">
+            <template v-slot:activator="{ on, attrs }">
+              <v-toolbar-title v-bind="attrs" v-on="on">
+                <nuxt-link to="/services" class="nav-link">Services</nuxt-link>
+              </v-toolbar-title>
+            </template>
+
+            <v-list color="#323c34" class="kelson" elevation="24">
+              <v-list-item>
+                <v-list-item-title class="d-nav-link-item">
+                  <nuxt-link class="d-nav-link" to="/">Option 1</nuxt-link>
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title class="d-nav-link-item">
+                  <nuxt-link class="d-nav-link" to="/">Option 2</nuxt-link>
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title class="d-nav-link-item">
+                  <nuxt-link class="d-nav-link" to="/">Option 3</nuxt-link>
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+
           <v-spacer></v-spacer>
           <nuxt-link to="/contact" class="nav-link">Contact</nuxt-link>
         </div>
@@ -329,6 +334,26 @@ nav {
   font-size: 24px;
   cursor: pointer;
   padding-left: 2.5rem;
+}
+
+.d-nav-link-item {
+  color: #fff;
+  margin-bottom: 1rem;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s ease;
+  &:hover {
+    color: #eca419 !important;
+  }
+  padding: 10px;
+}
+
+.d-nav-link {
+  color: inherit;
+
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 2px;
 }
 .services-list {
   transition: all 1s ease;
