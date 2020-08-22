@@ -41,7 +41,7 @@
         </v-row>
       </nav>
     </v-app-bar>
-    <v-app-bar height="80px" color="#323c34" class="px-0">
+    <v-app-bar height="65px" color="#323c34" class="px-0">
       <nav class="d-flex center align-center">
         <v-toolbar-title>
           <nuxt-link to="/" class="kelson-bold text-white text-3xl text-uppercase">{{name}}</nuxt-link>
@@ -53,31 +53,29 @@
           <v-spacer></v-spacer>
           <nuxt-link to="/about" class="nav-link">About</nuxt-link>
           <v-spacer></v-spacer>
-          <v-menu :open-on-hover="true" :offset-y="true" :close-on-click="true">
-            <template v-slot:activator="{ on, attrs }">
-              <v-toolbar-title v-bind="attrs" v-on="on">
-                <nuxt-link to="/services" class="nav-link">Services</nuxt-link>
-              </v-toolbar-title>
-            </template>
+          <div>
+            <nuxt-link to="/services" class="nav-link" id="service">Services</nuxt-link>
 
-            <v-list color="#323c34" class="kelson" elevation="24">
-              <v-list-item>
-                <v-list-item-title class="d-nav-link-item">
-                  <nuxt-link class="d-nav-link" to="/">Option 1</nuxt-link>
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title class="d-nav-link-item">
-                  <nuxt-link class="d-nav-link" to="/">Option 2</nuxt-link>
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title class="d-nav-link-item">
-                  <nuxt-link class="d-nav-link" to="/">Option 3</nuxt-link>
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+            <v-menu :open-on-hover="true" activator="#service" :offset-y="true">
+              <v-list @hover="overlist" color="#323c34" class="kelson">
+                <v-list-item>
+                  <v-list-item-title class="d-nav-link-item">
+                    <nuxt-link class="d-nav-link" to="/">Option 1</nuxt-link>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title class="d-nav-link-item">
+                    <nuxt-link class="d-nav-link" to="/">Option 2</nuxt-link>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title class="d-nav-link-item">
+                    <nuxt-link class="d-nav-link" to="/">Option 3</nuxt-link>
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </div>
 
           <v-spacer></v-spacer>
           <nuxt-link to="/contact" class="nav-link">Contact</nuxt-link>
@@ -195,6 +193,7 @@ export default {
     return {
       isNavOpen: false,
       hover: false,
+      listshown: false,
     };
   },
   methods: {
@@ -203,10 +202,22 @@ export default {
       this.isNavOpen = !this.isNavOpen;
     },
     over() {
+      this.hover = true;
       console.log("over");
     },
+    overlist() {
+      console.log("overlist");
+      this.listshown = true;
+      this.hover = true;
+    },
     leave() {
-      console.log("leave");
+      if (!this.listshown) {
+        this.hover = false;
+      }
+    },
+    leavelist() {
+      this.listshown = false;
+      this.hover = false;
     },
   },
 };
