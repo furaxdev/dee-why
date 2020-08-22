@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar height="40px" color="#eca419">
-      <nav class="flex text-pri center align-center text-center">
+      <nav class="d-flex text-pri center align-center text-center">
         <a href="/" target="_blank" color="#000" class="social-links">
           <v-icon medium>mdi-cellphone-android</v-icon>
           <span class="text-pri">+64 999999999999</span>
@@ -16,7 +16,7 @@
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
-        <div class="div flex">
+        <v-row class="div flex-row">
           <v-spacer></v-spacer>
           <v-spacer></v-spacer>
           <v-spacer></v-spacer>
@@ -38,16 +38,17 @@
           <a href="/" target="_blank" color="#000" class="social-links">
             <v-icon medium="true">mdi-pinterest</v-icon>
           </a>
-        </div>
+        </v-row>
       </nav>
     </v-app-bar>
     <v-app-bar height="80px" color="#323c34" class="px-0">
-      <nav class="flex center align-center">
+      <nav class="d-flex center align-center">
         <v-toolbar-title>
-          <nuxt-link to="/" class="kelson-bold text-white text-3xl uppercase">Dee Why</nuxt-link>
+          <nuxt-link to="/" class="kelson-bold text-white text-3xl text-uppercase">{{name}}</nuxt-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <div class="navigation kelson flex hidden d-md-flex">
+        <div></div>
+        <v-row class="navigation kelson d-none d-md-flex flex-row align-center">
           <nuxt-link to="/" class="nav-link">Home</nuxt-link>
           <v-spacer></v-spacer>
           <nuxt-link to="/about" class="nav-link">About</nuxt-link>
@@ -80,32 +81,31 @@
 
           <v-spacer></v-spacer>
           <nuxt-link to="/contact" class="nav-link">Contact</nuxt-link>
-        </div>
+        </v-row>
 
         <v-spacer></v-spacer>
 
         <nuxt-link
           to="/"
-          class="kelson btn-quote hidden d-md-block p-2 rounded"
+          class="kelson btn-quote d-none d-md-block pa-2 rounded"
           style="font-size:1.2rem"
         >Get Free quote</nuxt-link>
+        <svg
+          stroke="#eca419"
+          fill="#eca419"
+          stroke-width="0"
+          viewBox="0 0 512 512"
+          class="d-md-none block burger"
+          height="2.5rem"
+          width="2.5rem"
+          xmlns="http://www.w3.org/2000/svg"
+          @click="togglenav"
+        >
+          <path
+            d="M432 176H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 272H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 368H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z"
+          />
+        </svg>
       </nav>
-
-      <svg
-        stroke="#eca419"
-        fill="#eca419"
-        stroke-width="0"
-        viewBox="0 0 512 512"
-        class="d-md-none block burger"
-        height="2.5rem"
-        width="2.5rem"
-        xmlns="http://www.w3.org/2000/svg"
-        @click="togglenav"
-      >
-        <path
-          d="M432 176H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 272H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 368H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z"
-        />
-      </svg>
     </v-app-bar>
     <div
       class="absolute mobile-nav-wrapper right-0"
@@ -133,23 +133,23 @@
             </div>
           </li>
           <li class="m-nav-link-item">
-            <nuxt-link to="/" class="m-nav-link kelson uppercase">Home</nuxt-link>
+            <nuxt-link to="/" class="m-nav-link kelson text-uppercase">Home</nuxt-link>
           </li>
           <li class="m-nav-link-item">
-            <nuxt-link to="/about" class="m-nav-link kelson uppercase">About</nuxt-link>
+            <nuxt-link to="/about" class="m-nav-link kelson text-uppercase">About</nuxt-link>
           </li>
           <li class="m-nav-link-item">
-            <nuxt-link to="/services" class="m-nav-link kelson uppercase">Services</nuxt-link>
+            <nuxt-link to="/services" class="m-nav-link kelson text-uppercase">Services</nuxt-link>
           </li>
           <li class="m-nav-link-item">
-            <nuxt-link to="/contact" class="m-nav-link kelson uppercase">Contact</nuxt-link>
+            <nuxt-link to="/contact" class="m-nav-link kelson text-uppercase">Contact</nuxt-link>
           </li>
         </ul>
 
-        <div class="flex flex-column mx-5 mt-7">
-          <div class="flex">
+        <div class="d-flex flex-column mx-5 mt-7">
+          <v-row class="flex-column">
             <v-spacer></v-spacer>
-            <div class="flex">
+            <div class="d-flex">
               <a href="/" target="_blank">
                 <v-icon medium="true" class="m-social-links">mdi-facebook</v-icon>
               </a>
@@ -167,12 +167,13 @@
               </a>
             </div>
             <v-spacer></v-spacer>
-          </div>
-          <div class="flex mt-7">
+            <div></div>
+          </v-row>
+          <div class="d-flex mt-7">
             <v-spacer></v-spacer>
             <nuxt-link
               to="/"
-              class="kelson btn-quote p-2 rounded"
+              class="kelson btn-quote pa-2 rounded"
               style="font-size:1.2rem"
             >Get Free quote</nuxt-link>
             <v-spacer></v-spacer>
@@ -185,6 +186,11 @@
 
 <script>
 export default {
+  computed: {
+    name() {
+      return this.$store.state.siteData.name;
+    },
+  },
   data() {
     return {
       isNavOpen: false,
@@ -218,12 +224,12 @@ export default {
 }
 .mobile-nav-wrapper {
   z-index: 40000;
-
+  position: fixed;
   top: 0px;
   left: 100vw;
   width: 100vw;
   height: 100vh;
-  background: rgba($color: #ede4d3, $alpha: 0.6);
+  background: rgba($color: #fff, $alpha: 0.6);
 
   &.open {
     left: 0;

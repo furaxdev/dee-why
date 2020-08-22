@@ -1,17 +1,14 @@
-import colors from "vuetify/es5/util/colors";
-
 export default {
   /*
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
    */
   mode: "universal",
-  tailwindcss: {},
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
    */
-  target: "server",
+  target: "static",
   /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
@@ -53,35 +50,46 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ["@nuxtjs/tailwindcss", "@nuxtjs/vuetify"],
+  buildModules: ["@nuxtjs/vuetify"],
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    [
+      "@nuxtjs/firebase",
+      {
+        config: {
+          apiKey: "AIzaSyC7j6Ye1qmM3WB_Fb2QdSYo_ypVkyxsBJE",
+          authDomain: "dee-why.firebaseapp.com",
+          databaseURL: "https://dee-why.firebaseio.com",
+          projectId: "dee-why",
+          storageBucket: "dee-why.appspot.com",
+          messagingSenderId: "103213222565",
+          appId: "1:103213222565:web:d70f3111e1dfa3204a5b4c",
+          measurementId: "G-BHVBQMME48"
+        },
+        services: {
+          firestore: true,
+          storage: true,
+          analytics: true,
+          realtimeDb: true
+        }
+      }
+    ]
+  ],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
    */
+
   vuetify: {
-    customVariables: ["~/assets/variables.scss"],
-    theme: {
-      dark: false,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
+    treeshake: true
   },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {}
+  build: {
+    transpile: ["vuetify"]
+  }
 };
