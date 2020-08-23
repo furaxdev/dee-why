@@ -69,10 +69,7 @@ export default {
           measurementId: "G-BHVBQMME48"
         },
         services: {
-          firestore: true,
-          storage: true,
-          analytics: true,
-          realtimeDb: true
+          firestore: true
         }
       }
     ]

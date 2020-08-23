@@ -3,26 +3,25 @@
     <div
       class="HeroSection"
       :style="{
-        background: `linear-gradient(270deg, rgba(70,70,70,0.6), rgba(131, 92, 15, 0.603)) ,url('${url}') `,
+        background: `linear-gradient(270deg, rgba(70,70,70,0.6), rgba(131, 92, 15, 0.603)) ,url('https://s7.gifyu.com/images/hero-image-2.jpg') `,
         backgroundColor: '#464646'
       }"
     >
-      <div class="showcase align-center text-center">
+      <div class="showcase align-center text-center d-flex flex-column">
         <h1>
           <span class="title-text kelson-bold">DEE WHY</span>
           <br />
           <span class="title-text kelson-bold">CLEANING SERVICES</span>
         </h1>
-
-        <div class="d-flex flex-row">
-          <v-spacer></v-spacer>
-          <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <div class="d-flex flex-row buttons">
           <v-btn color="#eca419" :elevation="24" x-large>Contact Us</v-btn>
           <v-spacer></v-spacer>
 
           <v-btn color="#323c34" :elevation="24" x-large dark>Get Quote</v-btn>
-          <v-spacer></v-spacer>
-          <v-spacer></v-spacer>
         </div>
       </div>
     </div>
@@ -31,11 +30,6 @@
 
 <script>
 export default {
-  async mounted() {
-    const storageRef = this.$fireStorage.ref().child("hero-image-2.jpg");
-    const url = await storageRef.getDownloadURL();
-    this.url = url;
-  },
   data() {
     return {
       url: "3",
@@ -57,6 +51,7 @@ export default {
 }
 .showcase {
   width: max-content;
+  min-height: 30%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -83,5 +78,8 @@ export default {
   @media screen and (max-width: 500px) {
     font-size: 2.2rem;
   }
+}
+.buttons {
+  min-width: 60%;
 }
 </style>

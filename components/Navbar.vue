@@ -207,14 +207,24 @@ export default {
       return this.$store.state.siteData.name;
     },
     navStyle() {
+      let styles = {
+        backgroundColor: "#323c34 !important",
+      };
+      if (this.$router.currentRoute.path == "/") {
+        styles = {
+          backgroundColor: "transparent !important",
+        };
+      }
+
       if (this.scrollPos >= 40) {
-        return {
+        styles = {
           backgroundColor: "#323c34 !important",
           position: "fixed",
           top: 0,
         };
       }
-      return {};
+      this.stylesdata = styles;
+      return this.stylesdata;
     },
   },
   data() {
@@ -229,12 +239,17 @@ export default {
       this.isNavOpen = !this.isNavOpen;
     },
   },
+  watch: {
+    $route() {
+      console.log(this.$route.path);
+      this.scrollPos = Math.random();
+    },
+  },
 };
 </script>
 
 <style lang='scss' scoped>
 #navbar {
-  background-color: transparent;
   transition: all ease-in 1s;
 }
 
