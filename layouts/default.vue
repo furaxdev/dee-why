@@ -1,7 +1,7 @@
 <template>
   <v-app class="super">
     <Navbar />
-    <v-main class="main">
+    <v-main>
       <nuxt />
     </v-main>
   </v-app>
@@ -27,10 +27,5 @@ export default {
 <style lang="scss" scoped>
 .super {
   background-color: #ede4d3;
-}
-.main {
-  width: 1200px;
-  max-width: 90vw;
-  margin: auto;
 }
 </style>

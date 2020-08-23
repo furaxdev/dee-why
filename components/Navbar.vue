@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-app-bar height="40px" color="#eca419">
+  <div style="position:absolute;width:100%;z-index:2222 ">
+    <v-app-bar height="40px" color="#eca419" class>
       <nav class="d-flex text-pri center align-center text-center">
         <a href="/" target="_blank" color="#000" class="social-links">
           <v-icon medium>mdi-cellphone-android</v-icon>
@@ -41,10 +41,20 @@
         </v-row>
       </nav>
     </v-app-bar>
-    <v-app-bar height="65px" color="#323c34" class="px-0">
+    <v-app-bar
+      height="80px"
+      class="px-0"
+      :elevation="scrollPos >20 ?24 : 0"
+      id="navbar"
+      :style="navStyle"
+    >
       <nav class="d-flex center align-center">
         <v-toolbar-title>
-          <nuxt-link to="/" class="kelson-bold text-white text-3xl text-uppercase">{{name}}</nuxt-link>
+          <nuxt-link
+            to="/"
+            class="kelson-bold text-white text-uppercase"
+            style="font-size:2.5rem"
+          >{{name}}</nuxt-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <div></div>
@@ -57,7 +67,7 @@
             <nuxt-link to="/services" class="nav-link" id="service">Services</nuxt-link>
 
             <v-menu :open-on-hover="true" activator="#service" :offset-y="true">
-              <v-list @hover="overlist" color="#323c34" class="kelson">
+              <v-list color="#323c34" class="kelson">
                 <v-list-item>
                   <v-list-item-title class="d-nav-link-item">
                     <nuxt-link class="d-nav-link" to="/">Option 1</nuxt-link>
@@ -88,21 +98,23 @@
           class="kelson btn-quote d-none d-md-block pa-2 rounded"
           style="font-size:1.2rem"
         >Get Free quote</nuxt-link>
-        <svg
-          stroke="#eca419"
-          fill="#eca419"
-          stroke-width="0"
-          viewBox="0 0 512 512"
-          class="d-md-none block burger"
-          height="2.5rem"
-          width="2.5rem"
-          xmlns="http://www.w3.org/2000/svg"
-          @click="togglenav"
-        >
-          <path
-            d="M432 176H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 272H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 368H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z"
-          />
-        </svg>
+        <div class="burger-wrapper">
+          <svg
+            stroke="#ede4d3"
+            fill="#ede4d3"
+            stroke-width="0"
+            viewBox="0 0 512 512"
+            class="d-md-none block burger"
+            height="2.5rem"
+            width="2.5rem"
+            xmlns="http://www.w3.org/2000/svg"
+            @click="togglenav"
+          >
+            <path
+              d="M432 176H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 272H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16zM432 368H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z"
+            />
+          </svg>
+        </div>
       </nav>
     </v-app-bar>
     <div
@@ -184,16 +196,31 @@
 
 <script>
 export default {
+  mounted() {
+    window.addEventListener("scroll", () => {
+      this.scrollPos = window.scrollY;
+      console.log(this.scrollPos);
+    });
+  },
   computed: {
     name() {
       return this.$store.state.siteData.name;
+    },
+    navStyle() {
+      if (this.scrollPos >= 40) {
+        return {
+          backgroundColor: "#323c34 !important",
+          position: "fixed",
+          top: 0,
+        };
+      }
+      return {};
     },
   },
   data() {
     return {
       isNavOpen: false,
-      hover: false,
-      listshown: false,
+      scrollPos: 0,
     };
   },
   methods: {
@@ -201,29 +228,16 @@ export default {
       console.log("sdsd");
       this.isNavOpen = !this.isNavOpen;
     },
-    over() {
-      this.hover = true;
-      console.log("over");
-    },
-    overlist() {
-      console.log("overlist");
-      this.listshown = true;
-      this.hover = true;
-    },
-    leave() {
-      if (!this.listshown) {
-        this.hover = false;
-      }
-    },
-    leavelist() {
-      this.listshown = false;
-      this.hover = false;
-    },
   },
 };
 </script>
 
 <style lang='scss' scoped>
+#navbar {
+  background-color: transparent;
+  transition: all ease-in 1s;
+}
+
 .btn-close {
   height: 16px;
   cursor: pointer;
@@ -237,7 +251,7 @@ export default {
   z-index: 40000;
   position: fixed;
   top: 0px;
-  left: 100vw;
+  left: 600vw;
   width: 100vw;
   height: 100vh;
   background: rgba($color: #fff, $alpha: 0.6);
@@ -272,7 +286,7 @@ export default {
   cursor: pointer;
   transition: all ease-in-out 0.5s;
   &:hover {
-    fill: #ede4d3;
+    fill: #eca419;
   }
 }
 .v-icon {
@@ -304,7 +318,7 @@ nav {
 .nav-link {
   position: relative;
   color: #ede4d3;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   text-transform: uppercase;
   &::after {
