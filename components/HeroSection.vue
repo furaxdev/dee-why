@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-row align="center" justify="center" class="HeroSection" :style="{
-       
-      }">
+    <v-row align="center" justify="center" class="HeroSection">
       <v-col class="showcase">
         <v-col class="brand_name">
           <v-row align="center" justify="center">
@@ -39,13 +37,13 @@ export default {};
     url("https://s7.gifyu.com/images/hero-image-2.jpg");
   background-color: #464646;
   position: relative;
-  height: 100vh;
+  height: 700px;
   width: 100vw;
   background-size: cover !important;
   background-position-x: 60% !important;
   background-repeat: no-repeat;
 
-//   clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+  //   clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
 }
 .showcase {
   width: max-content;
