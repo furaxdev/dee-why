@@ -96,7 +96,7 @@ export default {};
 
 <style lang="scss">
 .about-section {
-  background: url("https://s7.gifyu.com/images/blueimg.jpg");
+  background: url("https://s7.gifyu.com/images/blueimg.jpg") center center;
   min-height: 400px;
   padding: 20px;
   position: relative;
