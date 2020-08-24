@@ -35,5 +35,6 @@ export default {
 <style lang="scss" scoped>
 .super {
   background-color: #ede4d3;
+  overflow: hidden;
 }
 </style>

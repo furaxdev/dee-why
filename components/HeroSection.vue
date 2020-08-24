@@ -38,7 +38,7 @@ export default {};
   background-color: #464646;
   position: relative;
   height: 800px;
-  width: 100vw;
+
   background-size: cover !important;
   background-position-x: 60% !important;
   background-repeat: no-repeat;
