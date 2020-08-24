@@ -1,6 +1,6 @@
 <template>
   <div style="position:absolute;width:100%;z-index:2222 ">
-    <v-app-bar height="40px" color="#eca419" class>
+    <v-app-bar height="35px" color="#eca419" class>
       <nav class="d-flex text-pri center align-center text-center">
         <a href="/" target="_blank" color="#000" class="social-links">
           <v-icon medium>mdi-cellphone-android</v-icon>
@@ -42,7 +42,7 @@
       </nav>
     </v-app-bar>
     <v-app-bar
-      height="80px"
+      height="60px"
       class="px-0"
       :elevation="scrollPos >20 ?24 : 0"
       id="navbar"
@@ -53,11 +53,13 @@
           <nuxt-link
             to="/"
             class="kelson-bold text-white text-uppercase"
-            style="font-size:2.5rem"
+            style="font-size:2rem"
           >{{name}}</nuxt-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <div></div>
+        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+
         <v-row class="navigation kelson d-none d-md-flex flex-row align-center">
           <nuxt-link to="/" class="nav-link">Home</nuxt-link>
           <v-spacer></v-spacer>
@@ -89,15 +91,15 @@
 
           <v-spacer></v-spacer>
           <nuxt-link to="/contact" class="nav-link">Contact</nuxt-link>
+          <v-spacer></v-spacer>
+
+          <nuxt-link
+            to="/"
+            class="kelson btn-quote pa-2 rounded"
+            style="font-size:1.2rem"
+          >Get Free quote</nuxt-link>
         </v-row>
 
-        <v-spacer></v-spacer>
-
-        <nuxt-link
-          to="/"
-          class="kelson btn-quote d-none d-md-block pa-2 rounded"
-          style="font-size:1.2rem"
-        >Get Free quote</nuxt-link>
         <div class="burger-wrapper">
           <svg
             stroke="#ede4d3"
@@ -199,7 +201,6 @@ export default {
   mounted() {
     window.addEventListener("scroll", () => {
       this.scrollPos = window.scrollY;
-      console.log(this.scrollPos);
     });
   },
   computed: {
@@ -216,7 +217,7 @@ export default {
         };
       }
 
-      if (this.scrollPos >= 40) {
+      if (this.scrollPos >= 35) {
         styles = {
           backgroundColor: "#323c34 !important",
           position: "fixed",
@@ -235,13 +236,11 @@ export default {
   },
   methods: {
     togglenav() {
-      console.log("sdsd");
       this.isNavOpen = !this.isNavOpen;
     },
   },
   watch: {
     $route() {
-      console.log(this.$route.path);
       this.scrollPos = Math.random();
     },
   },
@@ -250,7 +249,7 @@ export default {
 
 <style lang='scss' scoped>
 #navbar {
-  transition: all ease-in 1s;
+  transition: all ease-in 0.5s;
 }
 
 .btn-close {
@@ -333,7 +332,7 @@ nav {
 .nav-link {
   position: relative;
   color: #ede4d3;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
   text-transform: uppercase;
   &::after {

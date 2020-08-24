@@ -27,6 +27,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .super {
-  background-color: #ede4d3;
+  background-color: #fff;
 }
 </style>
