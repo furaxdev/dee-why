@@ -4,13 +4,7 @@
     <v-main>
       <nuxt />
     </v-main>
-
-    <v-footer color="#323c34" dark class="font-weight-medium" height="80">
-      <v-col class="text-center" cols="12">
-        {{ new Date().getFullYear() }} —
-        <strong>DEE WHY CLEANING SERVICES</strong>
-      </v-col>
-    </v-footer>
+    <Footer />
   </v-app>
 </template>
 
