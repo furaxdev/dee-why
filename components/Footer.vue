@@ -28,7 +28,8 @@
         <strong>DEE WHY CLEANING SERVICES</strong>
       </v-card-text>
     </v-card>
-r</template>
+  </v-footer>
+</template>
 
 
 <script>
