@@ -72,17 +72,17 @@
               <v-list color="#323c34" class="kelson">
                 <v-list-item>
                   <v-list-item-title class="d-nav-link-item">
-                    <nuxt-link class="d-nav-link" to="/">Option 1</nuxt-link>
+                    <nuxt-link class="d-nav-link" to="/services/sd">Option 1</nuxt-link>
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-title class="d-nav-link-item">
-                    <nuxt-link class="d-nav-link" to="/">Option 2</nuxt-link>
+                    <nuxt-link class="d-nav-link" to="/services/sd">Option 2</nuxt-link>
                   </v-list-item-title>
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-title class="d-nav-link-item">
-                    <nuxt-link class="d-nav-link" to="/">Option 3</nuxt-link>
+                    <nuxt-link class="d-nav-link" to="/services/sd">Option 3</nuxt-link>
                   </v-list-item-title>
                 </v-list-item>
               </v-list>
@@ -241,6 +241,7 @@ export default {
   },
   watch: {
     $route() {
+      this.isNavOpen = false;
       this.scrollPos = Math.random();
     },
   },

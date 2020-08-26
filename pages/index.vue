@@ -89,7 +89,7 @@ export default {};
 
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 .what-we-offer-wrapper {
   background: #eca419;
 }

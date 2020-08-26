@@ -1,13 +1,12 @@
 <template>
   <div class="main">
+    <div class="divider"></div>
     <div class="title">
-      <h1 class="kelson text-pri">About US</h1>
+      <h1 class="kelson text-white">Service title</h1>
     </div>
 
     <v-container class="section-des mx-auto px-10">
-      <div section-des-content>
-      
-      </div>
+      <div section-des-content></div>
     </v-container>
 
     <NewsletterContact></NewsletterContact>
@@ -20,12 +19,13 @@ export default {};
 
 <style lang="scss" scoped>
 .main {
-  background: url("../assets/svg/light-pattern.svg");
-
-  background-attachment: fixed;
   margin-top: 95px;
 }
 .title {
+  background-image: url("../../assets/svg/green-pattern.svg");
+  background-repeat: repeat-x;
+  background-size: 1018px;
+  background-color: #323c34;
   height: 300px;
   text-align: center;
   position: relative;
@@ -47,10 +47,16 @@ export default {};
   background-color: #ffffff;
   text-align: center;
 
+  position: relative;
+
   img {
     display: block;
     max-width: 100%;
     margin: auto;
   }
+}
+.divider {
+  height: 5px;
+  background-color: #eca419;
 }
 </style>
