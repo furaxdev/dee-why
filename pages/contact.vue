@@ -32,7 +32,7 @@
           </v-col>
         </v-col>
 
-        <v-icon x-large="true" class="contact-showoff d-none d-md-block">mdi-mail</v-icon>
+        <v-icon x-large class="contact-showoff d-none d-md-block">mdi-mail</v-icon>
       </v-row>
     </div>
     <iframe
