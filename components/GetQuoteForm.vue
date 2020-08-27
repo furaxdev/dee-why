@@ -1,35 +1,32 @@
 <template>
-  <form>
+  <form class="form">
     <v-text-field
+      dark
+      color="#eca419"
+      outlined
       v-model="name"
       :error-messages="nameErrors"
-      :counter="10"
       label="Name"
       required
-      @input="$v.name.$touch()"
       @blur="$v.name.$touch()"
     ></v-text-field>
     <v-text-field
+      dark
+      color="#eca419"
+      outlined
       v-model="email"
       :error-messages="emailErrors"
       label="E-mail"
       required
-      @input="$v.email.$touch()"
       @blur="$v.email.$touch()"
     ></v-text-field>
-    <v-select
-      v-model="select"
-      :items="items"
-      :error-messages="selectErrors"
-      label="Item"
-      required
-      @change="$v.select.$touch()"
-      @blur="$v.select.$touch()"
-    ></v-select>
+    <v-text-field dark color="#eca419" outlined v-model="phone" label="Phone" required></v-text-field>
+    <v-textarea color="#eca419" dark label="Enter Your Message" outlined required v-model="message"></v-textarea>
+
     <v-checkbox
       v-model="checkbox"
       :error-messages="checkboxErrors"
-      label="Do you agree?"
+      label="Do you want to submit?"
       required
       @change="$v.checkbox.$touch()"
       @blur="$v.checkbox.$touch()"
@@ -44,14 +41,12 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, maxLength, email } from "vuelidate/lib/validators";
-
 export default {
   mixins: [validationMixin],
 
   validations: {
-    name: { required, maxLength: maxLength(10) },
+    name: { required },
     email: { required, email },
-    select: { required },
     checkbox: {
       checked(val) {
         return val;
@@ -62,8 +57,8 @@ export default {
   data: () => ({
     name: "",
     email: "",
-    select: null,
-    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
+    phone: "",
+    message: "",
     checkbox: false,
   }),
 
@@ -83,8 +78,7 @@ export default {
     nameErrors() {
       const errors = [];
       if (!this.$v.name.$dirty) return errors;
-      !this.$v.name.maxLength &&
-        errors.push("Name must be at most 10 characters long");
+
       !this.$v.name.required && errors.push("Name is required.");
       return errors;
     },
@@ -99,15 +93,33 @@ export default {
 
   methods: {
     submit() {
-      this.$v.$touch();
+      const a = this.$v.$touch();
+      if (this.$v.$pending || this.$v.$error) return;
+      console.log("sss");
     },
     clear() {
       this.$v.$reset();
+
       this.name = "";
       this.email = "";
-      this.select = null;
+      this.phone = "";
+      this.message = "";
       this.checkbox = false;
     },
   },
 };
 </script>
+
+
+
+<style lang="scss">
+.form {
+  color: white;
+
+  input,
+  label,
+  .v-input {
+    color: white !important;
+  }
+}
+</style>

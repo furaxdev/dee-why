@@ -94,7 +94,7 @@
           <v-spacer></v-spacer>
 
           <nuxt-link
-            to="/"
+            to="/contact#getquote"
             class="kelson btn-quote pa-2 rounded"
             style="font-size:1.2rem"
           >Get Free quote</nuxt-link>
