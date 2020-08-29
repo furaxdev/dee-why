@@ -5,9 +5,7 @@
     </div>
 
     <v-container class="section-des mx-auto px-10">
-      <div section-des-content>
-      
-      </div>
+      <div section-des-content v-html="html"></div>
     </v-container>
 
     <NewsletterContact></NewsletterContact>
@@ -15,7 +13,26 @@
 </template>
 
 <script>
-export default {};
+export default {
+  async asyncData(context) {
+    let collection = context.$fireStore.collection("about");
+    let html = "";
+    const documents = await collection.get();
+
+    documents.forEach((doc) => {
+      html = html + doc.data().html;
+    });
+
+    return {
+      html: html || "",
+    };
+  },
+  data() {
+    return {
+      html: "",
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -43,7 +60,7 @@ export default {};
   margin-top: -60px;
   width: 90vw;
   max-width: 1300px;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #ffffff;
   text-align: center;
 
