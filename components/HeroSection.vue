@@ -15,7 +15,7 @@
           <v-spacer></v-spacer>
           <v-btn color="#eca419" :elevation="24" x-large nuxt to="/services">Our Services</v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="#323c34" :elevation="24" x-large dark>Get Quote</v-btn>
+          <v-btn color="#323c34" :elevation="24" x-large to="/contact#getquote" dark>Get Quote</v-btn>
           <v-spacer></v-spacer>
         </v-row>
       </v-col>

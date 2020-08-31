@@ -61,7 +61,6 @@ export default {
     message: "",
     checkbox: false,
   }),
-
   computed: {
     checkboxErrors() {
       const errors = [];
@@ -92,10 +91,19 @@ export default {
   },
 
   methods: {
-    submit() {
+    async submit() {
       const a = this.$v.$touch();
       if (this.$v.$pending || this.$v.$error) return;
-      console.log("sss");
+
+      await this.$fireStore.collection("quotations").doc().set({
+        name: this.name,
+        email: this.email,
+        phone: this.phone,
+        message: this.message,
+        timestamp: this.$fireStoreObj.FieldValue.serverTimestamp(),
+      });
+      this.clear();
+      alert("message sent");
     },
     clear() {
       this.$v.$reset();

@@ -4,8 +4,8 @@
       <h1 class="kelson text-pri">About US</h1>
     </div>
 
-    <v-container class="section-des mx-auto px-10">
-      <div section-des-content v-html="html"></div>
+    <v-container class="section-des mx-auto pa-8 pa-md-16">
+      <div class="section-des-content" v-html="html"></div>
     </v-container>
 
     <NewsletterContact></NewsletterContact>
@@ -19,9 +19,20 @@ export default {
     let html = "";
     const documents = await collection.get();
 
+    let coll = {};
     documents.forEach((doc) => {
-      html = html + doc.data().html;
+      coll[doc.id] = doc.data();
     });
+
+    for (let i = 0; i < 10; i++) {
+
+        let html2 = "";
+        if (coll[i]) {
+          html2 = coll[i].html || "";
+        }
+        html = html + html2;
+
+    }
 
     return {
       html: html || "",
@@ -64,10 +75,14 @@ export default {
   background-color: #ffffff;
   text-align: center;
 
-  img {
-    display: block;
-    max-width: 100%;
-    margin: auto;
-  }
+  position: relative;
+}
+img {
+  width: 100%;
+  margin: auto;
+}
+.divider {
+  height: 5px;
+  background-color: #eca419;
 }
 </style>

@@ -6,16 +6,14 @@
 
     <v-container class="section-des mx-auto px-10">
       <v-row justify="center" align="center">
-        <ServiceSingle title="Child Care Services"></ServiceSingle>
-        <ServiceSingle title="Child Care Services"></ServiceSingle>
-        <ServiceSingle title="Child Care Services"></ServiceSingle>
-        <ServiceSingle title="Child Care Services"></ServiceSingle>
-        <ServiceSingle title="Child Care Services"></ServiceSingle>
-        <ServiceSingle title="Child Care Services"></ServiceSingle>
-        <ServiceSingle title="Child Care Services"></ServiceSingle>
-        <ServiceSingle title="Child Care Services"></ServiceSingle>
-        <ServiceSingle title="Child Care Services"></ServiceSingle>
-        <ServiceSingle title="Child Care Services"></ServiceSingle>
+        <ServiceSingle
+          v-for="service in services"
+          :title="service.title"
+          :key="service.name"
+          :des="service.des"
+          :thumbnail="service.thumbnail"
+          :name="service.name"
+        ></ServiceSingle>
       </v-row>
     </v-container>
     <v-divider></v-divider>
@@ -25,7 +23,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  asyncData(context) {
+    return {
+      services: context.store.state.services,
+    };
+  },
+  data() {
+    return {
+      services: [],
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -3,9 +3,9 @@
     <div class="title">
       <h1 class="kelson text-pri">Contact</h1>
     </div>
-    <div class="contact">
+    <div class="contact" id="getquote">
       <v-row class="why-us">
-        <v-col cols="12" md="6" id="getquote" class="why-choose-us-wrapper">
+        <v-col cols="12" md="6" class="why-choose-us-wrapper">
           <v-row justify="center" class="content why-choose-us my-10 mx-auto">
             <v-col>
               <GetQuoteForm></GetQuoteForm>
@@ -16,18 +16,18 @@
           <v-col align="center" class="content py-auto what-we-offer">
             <v-col class="my-10">
               <h2>Email</h2>
-              <p>asds@dsds.com</p>
+              <p>{{contact.email}}</p>
             </v-col>
             <v-divider></v-divider>
             <v-col class="my-10">
               <h2>Phone</h2>
-              <p>+9464443343</p>
+              <p>{{contact.phone}}</p>
             </v-col>
             <v-divider></v-divider>
 
             <v-col class="my-10">
               <h2>Location</h2>
-              <p>dsd dsds ccc</p>
+              <p>{{contact.location}}</p>
             </v-col>
           </v-col>
         </v-col>
@@ -49,7 +49,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    contact() {
+      return this.$store.state.siteData.contact;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -59,10 +65,12 @@ export default {};
   margin-top: -150px;
 }
 .contact {
+  padding-top: 90px;
   position: relative;
   width: 90%;
   max-width: 1300px;
   margin: auto;
+  margin-top: -90px;
 }
 .why-us {
 }

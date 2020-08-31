@@ -1,7 +1,7 @@
 export default {
   async nuxtServerInit({ commit }, { $fireStore }) {
     const dbref = $fireStore.collection("basedata");
-    let doc = await dbref.doc("siteDetails").get();
+    let basedatacollection = await dbref.get();
 
     let services = [];
     for (let i = 1; i <= 15; i++) {
@@ -28,8 +28,20 @@ export default {
         html: html
       });
     }
+    let services2 = services.filter(service => service.show == true);
 
-    commit("SET_SITE_DATA", doc.data());
-    commit("SET_SERVICES_DATA", services);
+    let basedata = {};
+    basedatacollection.forEach(doc => {
+      basedata[doc.id] = doc.data();
+    });
+    const aboutdoc = await $fireStore
+      .collection("about")
+      .doc("description")
+      .get();
+
+    basedata.aboutdes = aboutdoc.data().des;
+
+    commit("SET_SITE_DATA", basedata);
+    commit("SET_SERVICES_DATA", services2);
   }
 };

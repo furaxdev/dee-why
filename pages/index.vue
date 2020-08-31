@@ -1,11 +1,11 @@
 <template>
   <div>
     <HeroSection></HeroSection>
-    <IndexServices class="services my-10 py-10"></IndexServices>
+    <IndexServices class="services my-10 py-10" :services="$store.state.services"></IndexServices>
     <div class="about-section">
       <v-row align="center" justify="center" class="about-row">
         <v-col class="text-center" cols="12">
-          <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ut expedita odio nulla molestias non tempora ad quod? Earum deleniti, error velit accusantium sunt aspernatur nulla enim delectus corrupti asperiores?</h2>
+          <h2>{{aboutdes}}</h2>
         </v-col>
       </v-row>
     </div>
@@ -58,7 +58,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    aboutdes() {
+      return this.$store.state.siteData.aboutdes;
+    },
+  },
+};
 </script>
 
 <style lang="scss">

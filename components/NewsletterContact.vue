@@ -8,10 +8,15 @@
         <v-col cols="12" md="6">
           <v-row>
             <v-col cols="12">
-              <v-btn color="#eca419" x-large nuxt to="/services">Contact Us</v-btn>
+              <v-btn color="#eca419" x-large nuxt to="/contact">Contact Us</v-btn>
             </v-col>
             <v-col cols="12">
-              <v-btn color="#323c34" x-large dark>Call US : +64 9999999999</v-btn>
+              <v-btn
+                color="#323c34"
+                x-large
+                dark
+                :href="'tel:'+contact.phone"
+              >Call US : {{contact.phone}}</v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -26,10 +31,18 @@
         <v-col cols="12" md="6">
           <v-row>
             <v-col cols="12" lg="6">
-              <v-text-field label="Enter Your Email Address" single-line outlined></v-text-field>
+              <v-text-field
+                label="E-mail"
+                single-line
+                outlined
+                v-model="email"
+                :error-messages="emailErrors"
+                required
+                @blur="$v.email.$touch()"
+              ></v-text-field>
             </v-col>
             <v-col cols="12" lg="6">
-              <v-btn color="#323c34" x-large dark>Subscribe</v-btn>
+              <v-btn color="#323c34" x-large dark @click="subscribe">Subscribe</v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -39,7 +52,44 @@
 </template>
 
 <script>
-export default {};
+import { validationMixin } from "vuelidate";
+import { required, email } from "vuelidate/lib/validators";
+export default {
+  mixins: [validationMixin],
+
+  validations: {
+    email: { required, email },
+  },
+  computed: {
+    contact() {
+      return this.$store.state.siteData.contact;
+    },
+    emailErrors() {
+      const errors = [];
+      if (!this.$v.email.$dirty) return errors;
+      !this.$v.email.email && errors.push("Must be valid e-mail");
+      !this.$v.email.required && errors.push("E-mail is required");
+      return errors;
+    },
+  },
+  methods: {
+    async subscribe() {
+      const a = this.$v.$touch();
+      if (this.$v.$pending || this.$v.$error) return;
+      await this.$fireStore.collection("newsletters").doc().set({
+        email: this.email,
+        timestamp: this.$fireStoreObj.FieldValue.serverTimestamp(),
+      });
+      this.email = "";
+      alert("Subscribed to NewsLetter");
+    },
+  },
+  data() {
+    return {
+      email: "",
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

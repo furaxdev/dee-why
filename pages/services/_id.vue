@@ -2,11 +2,11 @@
   <div class="main">
     <div class="divider"></div>
     <div class="title">
-      <h1 class="kelson text-white">Service title</h1>
+      <h1 class="kelson text-white">{{title}}</h1>
     </div>
 
-    <v-container class="section-des mx-auto px-10">
-      <div section-des-content></div>
+    <v-container class="section-des mx-auto pa-8 pa-md-16">
+      <div class="section-des-content" v-html="html"></div>
     </v-container>
 
     <NewsletterContact></NewsletterContact>
@@ -14,7 +14,34 @@
 </template>
 
 <script>
-export default {};
+export default {
+  validate(context) {
+    let a = [];
+    for (let i = 1; i <= 15; i++) {
+      a.push(`service${i}`);
+    }
+    if (a.includes(context.route.params.id)) {
+      return true;
+    }
+    return false;
+  },
+
+  asyncData(context) {
+    let service = context.store.state.services.filter(
+      (service) => service.name == context.route.params.id
+    );
+
+    return {
+      html: service[0].html,
+      title: service[0].title,
+    };
+  },
+  data() {
+    return {
+      html: "",
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -43,17 +70,15 @@ export default {};
   margin-top: -60px;
   width: 90vw;
   max-width: 1300px;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #ffffff;
   text-align: center;
 
   position: relative;
-
-  img {
-    display: block;
-    max-width: 100%;
-    margin: auto;
-  }
+}
+img {
+  width: 100%;
+  margin: auto;
 }
 .divider {
   height: 5px;

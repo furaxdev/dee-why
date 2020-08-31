@@ -2,12 +2,14 @@
   <div>
     <h1 class="kelson text-uppercase text-center text-sec title-service mb-10">Our Services</h1>
     <v-row justify="center" align="center">
-      <Service title="Child Care Services"></Service>
-      <Service title="Child Care Services"></Service>
-      <Service title="Child Care Services"></Service>
-      <Service title="Child Care Services"></Service>
-      <Service title="Child Care Services"></Service>
-      <Service title="Child Care Services"></Service>
+      <Service
+        v-for="service in servicestoshow"
+        :title="service.title"
+        :key="service.name"
+        :des="service.des"
+        :thumbnail="service.thumbnail"
+        :name="service.name"
+      ></Service>
     </v-row>
 
     <v-row justify="center" class="mt-10">
@@ -22,6 +24,23 @@ export default {
   components: {
     Service,
   },
+  props: {
+    services: {
+      type: Array,
+    },
+  },
+  computed: {
+    servicestoshow() {
+      let servicesarray = [];
+      for (let i = 0; i <= 5; i++) {
+        if (this.services[i]) {
+          servicesarray.push(this.services[i]);
+        }
+      }
+      return servicesarray;
+    },
+  },
+
 };
 </script>
 

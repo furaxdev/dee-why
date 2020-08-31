@@ -1,3 +1,5 @@
+const firebase = require("firebase");
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -88,5 +90,55 @@ export default {
    */
   build: {
     transpile: ["vuetify"]
+  },
+  generate: {
+    routes: async function() {
+      firebase.initializeApp({
+        apiKey: "AIzaSyC7j6Ye1qmM3WB_Fb2QdSYo_ypVkyxsBJE",
+        authDomain: "dee-why.firebaseapp.com",
+        databaseURL: "https://dee-why.firebaseio.com",
+        projectId: "dee-why",
+        storageBucket: "dee-why.appspot.com",
+        messagingSenderId: "103213222565",
+        appId: "1:103213222565:web:d70f3111e1dfa3204a5b4c",
+        measurementId: "G-BHVBQMME48"
+      });
+      let db = firebase.firestore();
+
+      let routes = [];
+
+      let services = [];
+      for (let i = 1; i <= 15; i++) {
+        let collection = db.collection("service" + i);
+        let coll = {};
+        let html = "";
+        const documents = await collection.get();
+        documents.forEach(doc => {
+          coll[doc.id] = doc.data();
+        });
+        for (let i = 0; i < 10; i++) {
+          let html2 = "";
+          if (coll[i]) {
+            html2 = coll[i].html || "";
+          }
+          html = html + html2;
+        }
+        services.push({
+          name: "service" + i,
+          title: coll.basedata.title || "",
+          thumbnail: coll.basedata.thumbnail || "",
+          des: coll.basedata.des || "",
+          show: coll.basedata.show || false,
+          html: html
+        });
+      }
+      let services2 = services.filter(service => service.show == true);
+
+      services2.forEach(service => {
+        routes.push("/services/" + services2.name);
+      });
+
+      return routes;
+    }
   }
 };

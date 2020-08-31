@@ -4,7 +4,7 @@
       <nav class="d-flex text-pri center align-center text-center">
         <a href="/" target="_blank" color="#000" class="social-links">
           <v-icon medium>mdi-cellphone-android</v-icon>
-          <span class="text-pri">+64 999999999999</span>
+          <v-btn text class="text-pri" :href="'tel:'+contact.phone">{{contact.phone}}</v-btn>
         </a>
 
         <v-spacer></v-spacer>
@@ -20,22 +20,22 @@
           <v-spacer></v-spacer>
           <v-spacer></v-spacer>
           <v-spacer></v-spacer>
-          <a href="/" target="_blank" color="#000" class="social-links">
+          <a :href="social.facebook" target="_blank" color="#000" class="social-links">
             <v-icon medium="true">mdi-facebook</v-icon>
           </a>
           <v-spacer></v-spacer>
 
-          <a href="/" target="_blank" color="#000" class="social-links">
+          <a :href="social.instagram" target="_blank" color="#000" class="social-links">
             <v-icon medium="true">mdi-instagram</v-icon>
           </a>
           <v-spacer></v-spacer>
 
-          <a href="/" target="_blank" color="#000" class="social-links">
+          <a :href="social.twitter" target="_blank" color="#000" class="social-links">
             <v-icon medium="true">mdi-twitter</v-icon>
           </a>
           <v-spacer></v-spacer>
 
-          <a href="/" target="_blank" color="#000" class="social-links">
+          <a :href="social.pinterest" target="_blank" color="#000" class="social-links">
             <v-icon medium="true">mdi-pinterest</v-icon>
           </a>
         </v-row>
@@ -70,19 +70,9 @@
 
             <v-menu :open-on-hover="true" activator="#service" :offset-y="true">
               <v-list color="#323c34" class="kelson">
-                <v-list-item>
+                <v-list-item v-for="service in $store.state.services" :key="service.name">
                   <v-list-item-title class="d-nav-link-item">
-                    <nuxt-link class="d-nav-link" to="/services/sd">Option 1</nuxt-link>
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-title class="d-nav-link-item">
-                    <nuxt-link class="d-nav-link" to="/services/sd">Option 2</nuxt-link>
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-title class="d-nav-link-item">
-                    <nuxt-link class="d-nav-link" to="/services/sd">Option 3</nuxt-link>
+                    <nuxt-link class="d-nav-link" :to="'/services/'+service.name">{{service.title}}</nuxt-link>
                   </v-list-item-title>
                 </v-list-item>
               </v-list>
@@ -145,16 +135,32 @@
             </div>
           </li>
           <li class="m-nav-link-item">
-            <nuxt-link to="/" class="m-nav-link kelson text-uppercase">Home</nuxt-link>
+            <nuxt-link
+              to="/"
+              class="m-nav-link kelson text-uppercase"
+              @click.native="isNavOpen = false"
+            >Home</nuxt-link>
           </li>
           <li class="m-nav-link-item">
-            <nuxt-link to="/about" class="m-nav-link kelson text-uppercase">About</nuxt-link>
+            <nuxt-link
+              to="/about"
+              class="m-nav-link kelson text-uppercase"
+              @click.native="isNavOpen = false"
+            >About</nuxt-link>
           </li>
           <li class="m-nav-link-item">
-            <nuxt-link to="/services" class="m-nav-link kelson text-uppercase">Services</nuxt-link>
+            <nuxt-link
+              to="/services"
+              class="m-nav-link kelson text-uppercase"
+              @click.native="isNavOpen = false"
+            >Services</nuxt-link>
           </li>
           <li class="m-nav-link-item">
-            <nuxt-link to="/contact" class="m-nav-link kelson text-uppercase">Contact</nuxt-link>
+            <nuxt-link
+              to="/contact"
+              class="m-nav-link kelson text-uppercase"
+              @click.native="isNavOpen = false"
+            >Contact</nuxt-link>
           </li>
         </ul>
 
@@ -162,19 +168,19 @@
           <v-row class="flex-column">
             <v-spacer></v-spacer>
             <div class="d-flex">
-              <a href="/" target="_blank">
+              <a :href="social.facebook" target="_blank">
                 <v-icon medium="true" class="m-social-links">mdi-facebook</v-icon>
               </a>
               <v-spacer></v-spacer>
-              <a href="/" target="_blank">
+              <a :href="social.instagram" target="_blank">
                 <v-icon medium="true" class="m-social-links">mdi-instagram</v-icon>
               </a>
               <v-spacer></v-spacer>
-              <a href="/" target="_blank">
+              <a :href="social.twitter" target="_blank">
                 <v-icon medium="true" class="m-social-links">mdi-twitter</v-icon>
               </a>
               <v-spacer></v-spacer>
-              <a href="/" target="_blank">
+              <a :href="social.pinterest" target="_blank">
                 <v-icon medium="true" class="m-social-links">mdi-pinterest</v-icon>
               </a>
             </div>
@@ -184,9 +190,10 @@
           <div class="d-flex mt-7">
             <v-spacer></v-spacer>
             <nuxt-link
-              to="/"
+              to="/contact#getquote"
               class="kelson btn-quote pa-2 rounded"
               style="font-size:1.2rem"
+              @click.native="isNavOpen = false"
             >Get Free quote</nuxt-link>
             <v-spacer></v-spacer>
           </div>
@@ -205,7 +212,13 @@ export default {
   },
   computed: {
     name() {
-      return this.$store.state.siteData.name;
+      return this.$store.state.siteData.siteDetails.name;
+    },
+    social() {
+      return this.$store.state.siteData.social;
+    },
+    contact() {
+      return this.$store.state.siteData.contact;
     },
     navStyle() {
       let styles = {
