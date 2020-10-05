@@ -18,3 +18,6 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+
+[![Run on Repl.it](https://repl.it/badge/github/furaxdev/dee-why)](https://repl.it/github/furaxdev/dee-why)
